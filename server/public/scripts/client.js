@@ -11,7 +11,7 @@ function onReady() {
 function getAllSongs() {
     $.ajax({
         method: 'GET',
-        url: '/records'
+        url: '/record'
     })
         // method or type can be used in jquery. not in angular
         .then(function (response) {
@@ -26,7 +26,7 @@ function getAllSongs() {
                     <td>${record.title}</td>
                     <td>${record.artist}</td>
                     <td>${record.year}</td>
-                    <td>${record.cost.toLocaleString('en', { style: 'currency', currency: 'USD' }).slice(0, -3)}</td>
+                    <td>${record.cost}</td>
                     </tr>`);
             });
         });
@@ -42,7 +42,7 @@ function addNew(title, artist, year, cost) {
     console.log('New song object', newSong);
     $.ajax({
         method: 'POST',
-        url: '/add-record',
+        url: '/record',
         data: newSong
     })
         .then(function (response) {
